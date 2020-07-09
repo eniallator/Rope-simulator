@@ -18,10 +18,25 @@ canvas.height -= noScrollbarOffset;
 ctx.fillStyle = "black";
 ctx.strokeStyle = "white";
 
+const gravity = new Vector(0, 0.98);
+const rope = new Rope(
+  new Vector(600, 200),
+  new Vector(1000, 200),
+  10,
+  0.7,
+  0.98,
+  40
+);
+const tps = 20;
+
+let startTime = Date.now();
+let accumulator = 0;
+
 function run() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Animation code
+  rope.update([gravity]);
+  rope.draw(ctx);
 
   requestAnimationFrame(run);
 }
